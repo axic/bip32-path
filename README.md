@@ -32,9 +32,9 @@ var bippath = require('bippath')
 
 bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString() // m/44'/1/1/0
 
-bippath.fromString("44'/0'/0'").toString(true) // m/44h/0h/0h
+bippath.fromString("m/44'/0'/0'").toString(false, true) // m/44h/0h/0h
 
-bippath.fromString("44h/0h/0'").toString() // m/44'/0'/0'
+bippath.fromString("m/44h/0h/0'").toString(true) // 44'/0'/0'
 
-bippath.fromString("44'/0'/0'").toTrezor() // [ 0x80000044, 0x80000000, 0x80000000 ]
+bippath.fromString("m/44'/0'/0'").toTrezor() // [ 0x80000044, 0x80000000, 0x80000000 ]
 ```
