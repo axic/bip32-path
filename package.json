@@ -1,0 +1,8 @@
+{
+  "name": "bippath",
+  "version": "0.1.0",
+  "description": "Bitcoin BIP32 ("HD Wallet") path helpers.",
+  "main": "index.js",
+  "author": "Alex Beregszaszi <alex@rtfs.hu>",
+  "license": "MIT"
+}
