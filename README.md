@@ -8,10 +8,10 @@ There are multiple path representations being used by different implementations.
 - and a binary representation predominantly used by Trezor and compatible wallets
 
 Some useful links:
-- [https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki](BIP32)
-- [https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki](BIP44)
-- [https://dcpos.github.io/bip39/](BIP39, an online tool to convert/derive keys)
-- [https://bip32jp.github.io/english/index.html](BIP32JP, an online tool to convert/derive keys)
+- [BIP32 specification](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
+- [BIP44 specification](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
+- [BIP39, an online tool to convert/derive keys](https://dcpos.github.io/bip39/)
+- [BIP32JP, an online tool to convert/derive keys](https://bip32jp.github.io/english/index.html)
 
 
 ### API
