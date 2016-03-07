@@ -7,7 +7,17 @@ var BIPPath = function (path) {
   this.path = path
 }
 
+BIPPath.validateString = function (text) {
+  try {
+    BIPPath.fromString(text)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 BIPPath.fromTrezor = function (path) {
+  // FIXME: check input?
   return new BIPPath(path)
 }
 
@@ -27,6 +37,8 @@ BIPPath.fromString = function (text) {
     ret[i] = parseInt(tmp[1], 10)
     if (tmp[2] === 'h' || tmp[2] === 'H' || tmp[2] === '\'') {
       ret[i] |= 0x80000000
+    } else if (tmp[2].length != 0) {
+      throw new Error('Invalid modifier')
     }
   }
   return new BIPPath(ret)

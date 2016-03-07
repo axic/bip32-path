@@ -41,3 +41,17 @@ describe('toString()', function () {
     assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(true, true), '44h/1/1/0')
   })
 })
+
+describe('validateString()', function () {
+  it('should work', function () {
+    assert.equal(bippath.validateString('m/44/1'), true);
+    assert.equal(bippath.validateString('m/44\'/1'), true);
+    assert.equal(bippath.validateString('44/1'), true);
+    assert.equal(bippath.validateString('44\'/1'), true);
+  })
+  it('should fail', function () {
+    assert.equal(bippath.validateString('wrong'), false);
+    assert.equal(bippath.validateString('m/44  /'), false);
+    assert.equal(bippath.validateString(''), false);
+  })
+})
