@@ -3,40 +3,40 @@
 var assert = require('assert')
 var bippath = require('../')
 
-describe('fromTrezor()', function () {
+describe('fromPathArray()', function () {
   it('should work with proper input', function () {
-    assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(), 'm/44\'/1/1/0')
+    assert.equal(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString(), 'm/44\'/1/1/0')
   })
   it('should fail for no parameter', function () {
     assert.throws(function () {
-      bippath.fromTrezor()
+      bippath.fromPathArray()
     })
   })
   it('should fail for number', function () {
     assert.throws(function () {
-      bippath.fromTrezor(1)
+      bippath.fromPathArray(1)
     })
   })
   it('should fail for string', function () {
     assert.throws(function () {
-      bippath.fromTrezor('wrong')
+      bippath.fromPathArray('wrong')
     })
   })
   it('should fail for empty array', function () {
     assert.throws(function () {
-      bippath.fromTrezor([])
+      bippath.fromPathArray([])
     })
   })
   it('should fail for non-number array', function () {
     assert.throws(function () {
-      bippath.fromTrezor([ 1, 'wrong' ])
+      bippath.fromPathArray([ 1, 'wrong' ])
     })
   })
 })
 
-describe('toTrezor()', function () {
+describe('toPathArray()', function () {
   it('should work with proper input', function () {
-    assert.deepEqual(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toTrezor(), [ 44 | 0x80000000, 1, 1, 0 ])
+    assert.deepEqual(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toPathArray(), [ 44 | 0x80000000, 1, 1, 0 ])
   })
 })
 
@@ -54,16 +54,16 @@ describe('fromString()', function () {
 
 describe('toString()', function () {
   it('should work with new style ouput', function () {
-    assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(), 'm/44\'/1/1/0')
+    assert.equal(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString(), 'm/44\'/1/1/0')
   })
   it('should work with old style ouput', function () {
-    assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(false, true), 'm/44h/1/1/0')
+    assert.equal(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString(false, true), 'm/44h/1/1/0')
   })
   it('should work with new style ouput (without m/ prefix)', function () {
-    assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(true), '44\'/1/1/0')
+    assert.equal(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString(true), '44\'/1/1/0')
   })
   it('should work with old style ouput (without m/ prefix)', function () {
-    assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(true, true), '44h/1/1/0')
+    assert.equal(bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString(true, true), '44h/1/1/0')
   })
 })
 
@@ -81,16 +81,16 @@ describe('validateString()', function () {
   })
 })
 
-describe('validateTrezor()', function () {
+describe('validatePathArray()', function () {
   it('should work', function () {
-    assert.equal(bippath.validateTrezor([ 44 ]), true);
-    assert.equal(bippath.validateTrezor([ 44 | 0x80000000, 1 ]), true);
+    assert.equal(bippath.validatePathArray([ 44 ]), true);
+    assert.equal(bippath.validatePathArray([ 44 | 0x80000000, 1 ]), true);
   })
   it('should fail', function () {
-    assert.equal(bippath.validateTrezor(), false);
-    assert.equal(bippath.validateTrezor(1), false);
-    assert.equal(bippath.validateTrezor('wrong'), false);
-    assert.equal(bippath.validateTrezor([]), false);
-    assert.equal(bippath.validateTrezor([ 'wrong' ]), false);
+    assert.equal(bippath.validatePathArray(), false);
+    assert.equal(bippath.validatePathArray(1), false);
+    assert.equal(bippath.validatePathArray('wrong'), false);
+    assert.equal(bippath.validatePathArray([]), false);
+    assert.equal(bippath.validatePathArray([ 'wrong' ]), false);
   })
 })

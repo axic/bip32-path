@@ -20,9 +20,9 @@ var BIPPath = function (path) {
   this.path = path
 }
 
-BIPPath.validateTrezor = function (path) {
+BIPPath.validatePathArray = function (path) {
   try {
-    BIPPath.fromTrezor(path)
+    BIPPath.fromPathArray(path)
     return true
   } catch (e) {
     return false
@@ -38,7 +38,7 @@ BIPPath.validateString = function (text) {
   }
 }
 
-BIPPath.fromTrezor = function (path) {
+BIPPath.fromPathArray = function (path) {
   return new BIPPath(path)
 }
 
@@ -65,7 +65,7 @@ BIPPath.fromString = function (text) {
   return new BIPPath(ret)
 }
 
-BIPPath.prototype.toTrezor = function () {
+BIPPath.prototype.toPathArray = function () {
   return this.path
 }
 
