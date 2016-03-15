@@ -6,6 +6,17 @@
 const HARDENED = 0x80000000
 
 var BIPPath = function (path) {
+  if (!Array.isArray(path)) {
+    throw new Error('Input must be an Array')
+  }
+  if (path.length === 0) {
+    throw new Error('Path must contain at least one level')
+  }
+  for (var i = 0; i < path.length; i++) {
+    if (typeof path[i] !== 'number') {
+      throw new Error('Path element is not a number')
+    }
+  }
   this.path = path
 }
 
@@ -19,17 +30,6 @@ BIPPath.validateString = function (text) {
 }
 
 BIPPath.fromTrezor = function (path) {
-  if (!Array.isArray(path)) {
-    throw new Error('Input must be an Array')
-  }
-  if (path.length === 0) {
-    throw new Error('Path must contain at least one level')
-  }
-  for (var i = 0; i < path.length; i++) {
-    if (typeof path[i] !== 'number') {
-      throw new Error('Path element is not a number')
-    }
-  }
   return new BIPPath(path)
 }
 
