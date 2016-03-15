@@ -47,8 +47,16 @@ describe('fromString()', function () {
   it('should work with old style input', function () {
     assert.equal(bippath.fromString('m/44h/0h/0\'').toString(), 'm/44\'/0\'/0\'')
   })
-  it('should work without m/ prefixt', function () {
+  it('should work without m/ prefix', function () {
     assert.equal(bippath.fromString('44\'/0\'/0\'').toString(), 'm/44\'/0\'/0\'')
+  })
+  it('should require the m/ prefix', function () {
+    assert.equal(bippath.fromString('m/44\'/0\'/0\'', true).toString(), 'm/44\'/0\'/0\'')
+  })
+  it('should require the m/ prefix (and fail)', function () {
+    assert.throws(function () {
+      bippath.fromString('44\'/0\'/0\'', true)
+    })
   })
 })
 
@@ -73,11 +81,13 @@ describe('validateString()', function () {
     assert.equal(bippath.validateString('m/44\'/1'), true);
     assert.equal(bippath.validateString('44/1'), true);
     assert.equal(bippath.validateString('44\'/1'), true);
+    assert.equal(bippath.validateString('m/44/1', true), true);
   })
   it('should fail', function () {
     assert.equal(bippath.validateString('wrong'), false);
     assert.equal(bippath.validateString('m/44  /'), false);
     assert.equal(bippath.validateString(''), false);
+    assert.equal(bippath.validateString('44/1', true), false);
   })
 })
 

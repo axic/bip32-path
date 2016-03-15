@@ -16,12 +16,12 @@ Some useful links:
 
 ### API
 
-- `BIPPath.fromString(path)` - creates an instance from a path written as text
+- `BIPPath.fromString(path, reqRoot)` - creates an instance from a path written as text. Set `reqRoot` to true if the `m/` prefix is mandatory.
 - `BIPPath.fromPathArray(path)` - creates an instance from a binary path array
 - `new BIPPath(path)` - alias for `BIPPath.fromPathArray(path)`
 - `<bippath>.toString(noRoot, oldStyle)` - returns a text encoded path. Set to `noRoot` to true to omit the `m/` prefix. Set `oldStyle` true to use `h` instead of `'` for marking hardened nodes.
 - `<bippath>.toPathArray()` - returns a binary path array
-- `BIPPath.validateString(path)` - returns true if the input is a valid path string
+- `BIPPath.validateString(path, reqRoot)` - returns true if the input is a valid path string
 - `BIPPath.validatePathArray(path)` - returns true if the input is a valid binary path array
 
 Binary path arrays contain each node as a separate number, where hardened nodes are marked by setting the 32th bit: `m/44'/1/1/0` corresponds to `[ 44 | 0x80000000, 1, 1, 0 ]`

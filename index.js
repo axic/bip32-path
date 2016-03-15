@@ -29,9 +29,9 @@ BIPPath.validatePathArray = function (path) {
   }
 }
 
-BIPPath.validateString = function (text) {
+BIPPath.validateString = function (text, reqRoot) {
   try {
-    BIPPath.fromString(text)
+    BIPPath.fromString(text, reqRoot)
     return true
   } catch (e) {
     return false
@@ -42,10 +42,12 @@ BIPPath.fromPathArray = function (path) {
   return new BIPPath(path)
 }
 
-BIPPath.fromString = function (text) {
+BIPPath.fromString = function (text, reqRoot) {
   // skip the root
   if (text.startsWith('m/')) {
     text = text.slice(2)
+  } else if (reqRoot) {
+    throw new Error('Root element is required')
   }
 
   var path = text.split('/')
