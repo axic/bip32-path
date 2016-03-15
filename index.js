@@ -20,6 +20,15 @@ var BIPPath = function (path) {
   this.path = path
 }
 
+BIPPath.validateTrezor = function (path) {
+  try {
+    BIPPath.fromTrezor(path)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 BIPPath.validateString = function (text) {
   try {
     BIPPath.fromString(text)

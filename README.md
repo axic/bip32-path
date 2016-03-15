@@ -19,9 +19,10 @@ Some useful links:
 - `BIPPath.fromString(path)` - creates an instance with a path written as text
 - `BIPPath.fromTrezor(path)` - creates an instance with a path as an array (Trezor-style)
 - `new BIPPath(path)` - alias for `BIPPath.fromTrezor(path)`
-- `<bippath>.toTrezor()` - returns a Trezor-style array
 - `<bippath>.toString(noRoot, oldStyle)` - returns a text encoded path. Set to `noRoot` to true to omit the `m/` prefix. Set `oldStyle` true to use `h` instead of `'` for marking hardened nodes.
-- `BIPPath.validateString(path)` - returns true if the input is a valid path
+- `<bippath>.toTrezor()` - returns a Trezor-style array
+- `BIPPath.validateString(path)` - returns true if the input is a valid path string
+- `BIPPath.validateTrezor(path)` - returns true if the input is a valid path array
 
 Trezor-style arrays contain each node as a separate number, where hardened nodes are marked by setting the 32th bit: `m/44'/1/1/0` corresponds to `[ 44 | 0x80000000, 1, 1, 0 ]`
 
