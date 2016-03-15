@@ -3,6 +3,8 @@
  * (C) 2016 Alex Beregszaszi
  */
 
+const HARDENED = 0x80000000
+
 var BIPPath = function (path) {
   this.path = path
 }
@@ -36,7 +38,7 @@ BIPPath.fromString = function (text) {
     }
     ret[i] = parseInt(tmp[1], 10)
     if (tmp[2] === 'h' || tmp[2] === 'H' || tmp[2] === '\'') {
-      ret[i] |= 0x80000000
+      ret[i] |= HARDENED
     } else if (tmp[2].length != 0) {
       throw new Error('Invalid modifier')
     }
@@ -52,8 +54,8 @@ BIPPath.prototype.toString = function (noRoot, oldStyle) {
   var ret = new Array(this.path.length)
   for (var i = 0; i < this.path.length; i++) {
     var tmp = this.path[i]
-    if (tmp & 0x80000000) {
-      ret[i] = (tmp & ~0x80000000) + (oldStyle ? 'h' : '\'')
+    if (tmp & HARDENED) {
+      ret[i] = (tmp & ~HARDENED) + (oldStyle ? 'h' : '\'')
     } else {
       ret[i] = tmp
     }
