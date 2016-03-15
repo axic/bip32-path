@@ -7,6 +7,26 @@ describe('fromTrezor()', function () {
   it('should work with proper input', function () {
     assert.equal(bippath.fromTrezor([44 | 0x80000000, 1, 1, 0]).toString(), 'm/44\'/1/1/0')
   })
+  it('should fail for number', function () {
+    assert.throws(function () {
+      bippath.fromTrezor(1)
+    })
+  })
+  it('should fail for string', function () {
+    assert.throws(function () {
+      bippath.fromTrezor('wrong')
+    })
+  })
+  it('should fail for empty array', function () {
+    assert.throws(function () {
+      bippath.fromTrezor([])
+    })
+  })
+  it('should fail for non-number array', function () {
+    assert.throws(function () {
+      bippath.fromTrezor([ 1, 'wrong' ])
+    })
+  })
 })
 
 describe('toTrezor()', function () {
