@@ -58,6 +58,11 @@ BIPPath.fromString = function (text, reqRoot) {
       throw new Error('Invalid input')
     }
     ret[i] = parseInt(tmp[1], 10)
+
+    if (ret[i] >= HARDENED) {
+      throw new Error('Invalid child index')
+    }
+
     if (tmp[2] === 'h' || tmp[2] === 'H' || tmp[2] === '\'') {
       ret[i] |= HARDENED
     } else if (tmp[2].length != 0) {

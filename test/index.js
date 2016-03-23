@@ -58,6 +58,17 @@ describe('fromString()', function () {
       bippath.fromString('44\'/0\'/0\'', true)
     })
   })
+  it('should not work with invalid index', function () {
+    assert.throws(function () {
+      bippath.fromString('44\'/2147483648')
+    })
+    assert.throws(function () {
+      bippath.fromString('44\'/2147483648\'')
+    })
+  })
+  it('should work with large indexes', function () {
+    assert.equal(bippath.fromString('m/0/2147483647\'/1/2147483646\'/2').toString(), 'm/0/2147483647\'/1/2147483646\'/2')
+  })
 })
 
 describe('toString()', function () {
