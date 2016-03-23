@@ -69,6 +69,9 @@ describe('fromString()', function () {
   it('should work with large indexes', function () {
     assert.equal(bippath.fromString('m/0/2147483647\'/1/2147483646\'/2').toString(), 'm/0/2147483647\'/1/2147483646\'/2')
   })
+  it('should not return negative indexes', function () {
+    assert.equal(bippath.fromString('m/44\'/0\'/0\'').toPathArray()[0], 2147483692)
+  })
 })
 
 describe('toString()', function () {

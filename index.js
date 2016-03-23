@@ -64,7 +64,7 @@ BIPPath.fromString = function (text, reqRoot) {
     }
 
     if (tmp[2] === 'h' || tmp[2] === 'H' || tmp[2] === '\'') {
-      ret[i] |= HARDENED
+      ret[i] += HARDENED
     } else if (tmp[2].length != 0) {
       throw new Error('Invalid modifier')
     }
