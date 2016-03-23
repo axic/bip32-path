@@ -24,7 +24,7 @@ Some useful links:
 - `BIPPath.validateString(path, reqRoot)` - returns true if the input is a valid path string
 - `BIPPath.validatePathArray(path)` - returns true if the input is a valid binary path array
 
-Binary path arrays contain each node as a separate number, where hardened nodes are marked by setting the 32th bit: `m/44'/1/1/0` corresponds to `[ 44 | 0x80000000, 1, 1, 0 ]`
+Binary path arrays contain each node as a separate number, where hardened nodes are marked by setting the 32th bit: `m/44'/1/1/0` corresponds to `[ 0x8000002c, 1, 1, 0 ]`
 
 
 ### Examples
@@ -32,11 +32,11 @@ Binary path arrays contain each node as a separate number, where hardened nodes 
 ```js
 var bippath = require('bippath')
 
-bippath.fromPathArray([44 | 0x80000000, 1, 1, 0]).toString() // m/44'/1/1/0
+bippath.fromPathArray([0x8000002c, 1, 1, 0]).toString() // m/44'/1/1/0
 
 bippath.fromString("m/44'/0'/0'").toString(false, true) // m/44h/0h/0h
 
 bippath.fromString("m/44h/0h/0'").toString(true) // 44'/0'/0'
 
-bippath.fromString("m/44'/0'/0'").toPathArray() // [ 0x80000044, 0x80000000, 0x80000000 ]
+bippath.fromString("m/44'/0'/0'").toPathArray() // [ 0x8000002c, 0x80000000, 0x80000000 ]
 ```
