@@ -72,6 +72,11 @@ describe('fromString()', function () {
   it('should not return negative indexes', function () {
     assert.equal(bippath.fromString('m/44\'/0\'/0\'').toPathArray()[0], 2147483692)
   })
+  it('should work with alternative root names', function () {
+    assert.equal(bippath.fromString('m\'/0').toPathArray()[0], 0)
+    assert.equal(bippath.fromString('M/0').toPathArray()[0], 0)
+    assert.equal(bippath.fromString('M\'/0').toPathArray()[0], 0)
+  })
 })
 
 describe('toString()', function () {
