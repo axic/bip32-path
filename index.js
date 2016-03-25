@@ -44,7 +44,7 @@ BIPPath.fromPathArray = function (path) {
 
 BIPPath.fromString = function (text, reqRoot) {
   // skip the root
-  if (text.startsWith('m/')) {
+  if (/^m\//i.test(text)) {
     text = text.slice(2)
   } else if (reqRoot) {
     throw new Error('Root element is required')
