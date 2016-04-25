@@ -1,4 +1,4 @@
-# BIPPath
+# BIP32 Path
 
 Bitcoin BIP32 ("HD Wallet") path helpers.
 
@@ -30,7 +30,7 @@ Binary path arrays contain each node as a separate number, where hardened nodes 
 ### Examples
 
 ```js
-var bippath = require('bippath')
+var bippath = require('bip32-path')
 
 bippath.fromPathArray([0x8000002c, 1, 1, 0]).toString() // m/44'/1/1/0
 

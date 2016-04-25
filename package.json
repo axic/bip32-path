@@ -1,5 +1,5 @@
 {
-  "name": "bippath",
+  "name": "bip32-path",
   "version": "0.4.2",
   "description": "Bitcoin BIP32 ('HD Wallet') path helpers.",
   "main": "index.js",
@@ -11,11 +11,11 @@
     "hdwallet",
     "trezor"
   ],
-  "repository": "https://github.com/axic/bippath",
+  "repository": "https://github.com/axic/bip32-path",
   "bugs": {
-    "url": "https://github.com/axic/bippath/issues"
+    "url": "https://github.com/axic/bip32-path/issues"
   },
-  "homepage": "https://github.com/axic/bippath",
+  "homepage": "https://github.com/axic/bip32-path",
   "scripts": {
     "test": "mocha ./test/"
   },
