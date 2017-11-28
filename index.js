@@ -6,11 +6,11 @@
 const HARDENED = 0x80000000
 
 var BIPPath = function (path) {
-  if (!Array.isArray(path)) throw new TypeError('Input must be an Array')
-  if (path.length === 0) throw new TypeError('Path must contain at least one level')
+  if (!Array.isArray(path)) throw new TypeError('Expected Array path')
+  if (path.length === 0) throw new TypeError('Expected non-empty Array path')
 
   for (var i = 0; i < path.length; i++) {
-    if (typeof path[i] !== 'number') throw new TypeError('Path element is not a number')
+    if (typeof path[i] !== 'number') throw new TypeError('Expected Number path element')
   }
   
   this.path = path
@@ -64,6 +64,7 @@ BIPPath.fromString = function (text, reqRoot) {
       throw new Error('Invalid modifier')
     }
   }
+  
   return new BIPPath(ret)
 }
 
