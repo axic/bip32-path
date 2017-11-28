@@ -6,17 +6,13 @@
 const HARDENED = 0x80000000
 
 var BIPPath = function (path) {
-  if (!Array.isArray(path)) {
-    throw new Error('Input must be an Array')
-  }
-  if (path.length === 0) {
-    throw new Error('Path must contain at least one level')
-  }
+  if (!Array.isArray(path)) throw new TypeError('Input must be an Array')
+  if (path.length === 0) throw new TypeError('Path must contain at least one level')
+
   for (var i = 0; i < path.length; i++) {
-    if (typeof path[i] !== 'number') {
-      throw new Error('Path element is not a number')
-    }
+    if (typeof path[i] !== 'number') throw new TypeError('Path element is not a number')
   }
+  
   this.path = path
 }
 
@@ -54,9 +50,8 @@ BIPPath.fromString = function (text, reqRoot) {
   var ret = new Array(path.length)
   for (var i = 0; i < path.length; i++) {
     var tmp = /(\d+)([hH\']?)/.exec(path[i])
-    if (tmp === null) {
-      throw new Error('Invalid input')
-    }
+    if (tmp === null) throw new TypeError('Invalid input')
+    
     ret[i] = parseInt(tmp[1], 10)
 
     if (ret[i] >= HARDENED) {
@@ -78,14 +73,17 @@ BIPPath.prototype.toPathArray = function () {
 
 BIPPath.prototype.toString = function (noRoot, oldStyle) {
   var ret = new Array(this.path.length)
+
   for (var i = 0; i < this.path.length; i++) {
     var tmp = this.path[i]
+
     if (tmp & HARDENED) {
       ret[i] = (tmp & ~HARDENED) + (oldStyle ? 'h' : '\'')
     } else {
       ret[i] = tmp
     }
   }
+
   return (noRoot ? '' : 'm/') + ret.join('/')
 }
 
